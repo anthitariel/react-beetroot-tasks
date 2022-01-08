@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booklist</title>
+</head>
+<body>
+    
+    <h1> Booklist</h1>
+
+    <form action="">
+        <label for="title">Book title</label>
+        <input type="text" name="title" id="title" placeholder="Text">
+        <label for="author">Author</label>
+        <input type="text" name="author" id="author" placeholder="Text">
+        <label for="isRead">Read?</label>
+        <select name="isRead" id="isRead">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <button type="submit" id="submit">Add book</button>
+    </form>
+
+    <ol id='booklist'>
+        <h2>Your books:</h2>
+    </ol>
+    
+    <script>
+
+class Book {
+    constructor(title,author,isRead) {
+        this.title = title;
+        this.author = author;
+        this.isRead = isRead;
+    }
+}
+
+let btn = document.getElementById('submit');
+let elementUl = document.getElementById('booklist');
+
+let allBooks = [];
+
+function addBook(book) {
+    
+    // Convert these elements to p, in order to hold your book info   
+    let elementTitle = document.createElement('p');
+    let elementAuthor = document.createElement('p');
+    let elementisRead = document.createElement('p');
+    
+    // The list element that will hold all book info
+    let bookElement = document.createElement('li');
+
+    let titleContent = document.createTextNode("Title: " + book.title);
+    let authorContent = document.createTextNode("Author: " + book.author);
+    let isReadContent = document.createTextNode("isRead: " + book.isRead);
+
+    elementTitle.appendChild(titleContent);
+    elementAuthor.appendChild(authorContent);
+    elementisRead.appendChild(isReadContent);
+    
+    // Add all book info to list element
+    bookElement.appendChild(elementTitle);
+    bookElement.appendChild(elementAuthor);
+    bookElement.appendChild(elementisRead);
+    
+    // Add list element to list.
+    elementUl.appendChild(bookElement);
+}
+
+function submitForm(event) {
+    event.preventDefault();
+    
+    let title = document.getElementById('title').value;
+    let author = document.getElementById('author').value;
+    let isRead = document.getElementById('isRead').value;
+
+    let book = new Book(title,author,isRead);
+
+    allBooks.push(book);     
+    addBook(book);
+}
+
+btn.addEventListener('click',submitForm);
+
+    </script>
+</body>
+</html>
