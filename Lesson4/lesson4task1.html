@@ -52,13 +52,10 @@ function addBook(book) {
     // The list element that will hold all book info
     let bookElement = document.createElement('li');
 
-    let titleContent = document.createTextNode("Title: " + book.title);
-    let authorContent = document.createTextNode("Author: " + book.author);
-    let isReadContent = document.createTextNode("isRead: " + book.isRead);
+    let titleContent = document.createTextNode(`"${book.title}" ${book.author}, isRead: ${book.isRead}`);
 
     elementTitle.appendChild(titleContent);
-    elementAuthor.appendChild(authorContent);
-    elementisRead.appendChild(isReadContent);
+
     
     // Add all book info to list element
     bookElement.appendChild(elementTitle);
