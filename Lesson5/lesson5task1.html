@@ -12,7 +12,7 @@
     <div class="container">
         <div id="posts" class="row">
           <h1>10 posts from <a href="https://jsonplaceholder.typicode.com/posts" target="_blank">json</a></h1>
-          <h2>// Title + Author.id</h2>
+          <h2>// Title + Author</h2>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
   .then(function(json) {
     for(let i = 0; i < 10; i++) {
       let listItem = document.createElement('li');
-      listItem.innerHTML = `"${json[i].title}", author.id: ${json[i].id}`
+      listItem.innerHTML = `"${json[i].title}", <a href="${"https://jsonplaceholder.typicode.com/users/"+json[i].id}">get author</a>`
       posts.appendChild(listItem);
     }
   })
@@ -41,7 +41,6 @@
     }
     console.log(result);
   });
-
 
     </script>
 
