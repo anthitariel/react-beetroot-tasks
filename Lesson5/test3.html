@@ -23,11 +23,11 @@
     .then((response) => response.json())
     .then((function(json) {
         for(let k = 0; k < 10; k++) {
-        let i = Math.floor(Math.random()*json.length)
-        let list = document.createElement('li')
-        list.innerHTML = `"${json[i].title}", <span id="link${k}" style="color:blue;">get author</span>`
-        posts.appendChild(list)
-        }
+            let i = Math.floor(Math.random()*json.length)
+            let list = document.createElement('li')
+            list.innerHTML = `"${json[i].title}", <span id="link${k}" style="color:blue;">get author</span>`
+            posts.appendChild(list)
+            }
         })
     )
     .catch((error) => console.log(error))

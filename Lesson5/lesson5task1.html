@@ -8,7 +8,6 @@
 </head>
 <body>
     
-
     <div class="container">
         <div id="posts" class="row">
           <h1>10 random posts from <a href="https://jsonplaceholder.typicode.com/posts" target="_blank">json</a></h1>
@@ -32,6 +31,7 @@
         result.push(user)
     }
   })
+  .catch((error) => console.log(error))
 
   function clickLink(k, i) {
         let nposts = fetchedPosts.filter(post => post.userId == fetchedPosts[i].userId).length
@@ -47,11 +47,9 @@
       let listItem = document.createElement('li')
       listItem.innerHTML = `"${json[i].title}", <span id="link${k}" onclick="clickLink(${k},${i})" style="color:blue;">get author</span>`
       posts.appendChild(listItem)
-
-
     }
   })
-  .catch(console.error)
+  .catch((error) => console.log(error))
 
     </script>
 
