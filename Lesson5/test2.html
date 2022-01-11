@@ -4,56 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 5 Task 1</title>
+    <title>Document</title>
 </head>
 <body>
-    
 
-    <div class="container">
-        <div id="posts" class="row">
-          <h1>10 random posts from <a href="https://jsonplaceholder.typicode.com/posts" target="_blank">json</a></h1>
-          <h2>// Title + Author</h2>
-        </div>
-    </div>
+    <h1>Authors</h1>
 
-    <script>
-    
-  const posts = document.getElementById('posts')
-  let kvp = {}
-  let fetchedPosts = {}
-  const log = console.log
+    <ul id="authors">
 
-  fetch('https://jsonplaceholder.typicode.com/users')
-  .then((response) => response.json())
-  .then((users) => {
-    const result = []
-    for (let user of users) {
-        kvp[user.id] = user
-        result.push(user)
-    }
-  })
+    </ul>
 
-  function clickLink(k, i) {
-        let nposts = fetchedPosts.filter(post => post.userId == fetchedPosts[i].userId).length
-        document.getElementById(`link${k}`).textContent = `${kvp[fetchedPosts[i].userId].name} (Posts: ${nposts})`
-        }
+<script>
+  const ul = document.getElementById('authors');
+  const list = document.createDocumentFragment();
+  const url = 'https://jsonplaceholder.typicode.com/users/';
+
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      json.map(function(author) {
+        let li = document.createElement('li');
+        let name = document.createElement('h2');
+        let email = document.createElement('span');
+
+        name.innerHTML = `${author.name}`;
+        email.innerHTML = `${author.email}`;
+
+        li.appendChild(name);
+        li.appendChild(email);
+        list.appendChild(li);
+        ul.appendChild(list);
+      });
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
   
-  fetch('https://jsonplaceholder.typicode.com/posts')
-  .then((response) => response.json())
-  .then(function(json) {
-    fetchedPosts = json
-    for(let k = 0; k < 10; k++) {
-      i = Math.floor(Math.random()*json.length)
-      let listItem = document.createElement('li')
-      listItem.innerHTML = `"${json[i].title}", <span id="link${k}" onclick="clickLink(${k},${i})" style="color:blue;">get author</span>`
-      posts.appendChild(listItem)
-
-
-    }
-  })
-  .catch(console.error)
-
-    </script>
-
+</script>
 </body>
 </html>
