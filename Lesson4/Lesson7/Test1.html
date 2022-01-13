@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+  </head>
+  <body>
+
+    <h1>Домашнє завдання:</h1>
+    <p>Вивести список з 10 користувачів з url https://jsonplaceholder.typicode.com/users (Name, username, email)</p>
+    <p>- обов'язково використовувати композицію компонентів</p>
+    <p>- обов'язково затверджувати props використовуючи бібліотеку prop-types</p>
+    <p>- реалізувати фільтрацію по імені користувача</p>
+    
+    
+    <!-- React components -->
+    <div id="filter_button_container"></div>
+    <div id="users_container"></div>
+
+    <!-- Load React -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- React Script-->
+    <script>
+      'use strict';
+
+      // Filter Button
+      const e = React.createElement;
+      class FilterButton extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { filtered: false };
+        }
+        render() {
+          if (this.state.filtered) {
+            return 'You filtered this.';
+          }
+        return e(
+            'button',
+            { onClick: () => this.setState({ filtered: true }) },
+            'Filter Button'
+          );
+        }
+      }
+      const domContainer = document.querySelector('#filter_button_container');
+      ReactDOM.render(e(FilterButton), domContainer);
+
+      //Users list
+      class Hello extends React.Component {
+          render() {
+          return React.createElement('div', null, `Привіт, ${this.props.toWhat}`);
+        }
+      }
+
+      ReactDOM.render(
+        React.createElement(Hello, {toWhat: 'світе'}, null),
+        document.getElementById('root')
+      );
+
+
+    </script>
+
+  </body>
+</html>
+
