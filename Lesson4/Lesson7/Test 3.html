@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components</title>
+    <link  rel="stylesheet"  href="../assets/css/bootstrap.min.css" />
+  </head>
+  <body>
+  
+  <div id="root"></div>
+
+  <script src="../assets/js/react.development.js"></script>
+  <script src="../assets/js/react-dom.development.js"></script>
+  <script  src="../assets/js/babel.js"></script>
+    
+  <script type="text/babel">
+      const root = document.getElementById("root");
+
+      function Heading({ greeting, names }) {
+        return <h1><strong>{greeting}</strong> <em>{names.join(', ')}</em></h1>;
+      }
+
+      const el = (
+        <div className="container">
+          <Heading names={['World', 'React']} greeting="Hello" />
+          <Heading names={["React"]} greeting="Bonjour" />
+        </div>
+      );
+
+      ReactDOM.render(el, root);
+    </script>
+  </body>
+</html>
